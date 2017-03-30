@@ -8,11 +8,13 @@ import org.springframework.web.bind.annotation.ResponseBody;
 public class RootController {
 	
 	@RequestMapping("/index")
-	@ResponseBody
 	public String index(){
-		return "Hello Spring";
+		return "/WEB-INF/views/index.jsp";
+		// 컨트롤러와 뷰를 연결함
 		
 	}
 	// 함수로 URL 매핑하기!!!!
+	
+	
 
 }
