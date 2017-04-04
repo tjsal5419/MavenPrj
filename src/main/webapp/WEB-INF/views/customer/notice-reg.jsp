@@ -30,8 +30,12 @@
                   	<th>파일 선택</th>
                   	<td> <input type="file" name="files"/></td>
                   </tr>
-
                   
+                  <tr>
+                  	<th>파일 선택</th>
+                  	<td> <input type="file" name="files"/></td>
+                  </tr>
+                
                                     
                   <tr>                  
                      <td colspan="2">
@@ -42,7 +46,7 @@
             </table>
             <div>      
                <input type="submit" value="등록" />         
-               <a href="notice">취소</a>
+               <a href="/customer/notice">취소</a>
             </div>
             </form>            
          </main>

@@ -85,7 +85,7 @@
 				</table>
 			</div>
 	   				
-			<div class="margin">${pg}/${last} pages</div>
+			<div class="margin" style="color:red;">${p}/${last} pages</div>
 			<!-- 제목도, 목록도, 문장도, 폼도, 표도 아니면 모두 div -->
 
 			<div class="margin">
@@ -94,7 +94,7 @@
              	
 					<ul>
  						<c:forEach var="i" begin="1" end="${last}">
- 						 	<li><a href="?p=${i}&q=${param.q}&f=${param.f}">${i}</a></li>
+ 						 	<li><a href="?p=${i}&q=${q}&f=${f}">${i}</a></li>
              			</c:forEach>
                		</ul>
                

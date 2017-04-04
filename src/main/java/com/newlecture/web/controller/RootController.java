@@ -9,7 +9,7 @@ public class RootController {
 	
 	@RequestMapping("/index")
 	public String index(){
-		return "/WEB-INF/views/index.jsp";
+		return "index";
 		// 컨트롤러와 뷰를 연결함
 		
 	}

@@ -11,11 +11,63 @@
         http://www.springframework.org/schema/context/spring-context.xsd
         http://www.springframework.org/schema/mvc
         http://www.springframework.org/schema/mvc/spring-mvc.xsd">
-
+	
+	
+    <mvc:resources location="/resource/" mapping="/resource/**"></mvc:resources>
+    <!-- resource의 자식의 자식 파일은 resources로 이용할 것이다. -->
+    <mvc:annotation-driven></mvc:annotation-driven>
+   
    <context:component-scan 
       base-package="com.newlecture.web.controller" /> <!-- url매핑은 해당 패키지 안에서 어노테이션을 찾아봐라 --> 
-      
-   <bean class="com.newlecture.web.dao.mysql.MySQLNoticeDao"/>
    
+   
+   
+   	<!-- 객체를 명시한 bean -->
+   <bean class="com.newlecture.web.dao.mysql.MySQLNoticeDao"/>
+   <bean class="com.newlecture.web.dao.mysql.MySQLNoticeFileDao"/>
+     
+    <!-- multipart formdata 명시 -->
+    <bean id="multipartResolver"
+        class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+ 
+         <!-- setting maximum upload size -->
+        <property name="maxUploadSize" value="10000000" />       
+    </bean> 
+    
+    
+    <!-- Tiles setting -->
+    <!-- 메모리에 tiles.xml얹음 -->
+    <bean class="org.springframework.web.servlet.view.tiles3.TilesConfigurer">
+       <property name="definitions"  value="/WEB-INF/tiles.xml"/>
+    </bean>
+    
+    <!-- Tiles View Resolver setting -->
+    <!-- url요청 시 타일즈가 가로챈다. -->
+    <bean class="org.springframework.web.servlet.view.UrlBasedViewResolver">
+       <property name="viewClass"  value="org.springframework.web.servlet.view.tiles3.TilesView"/>
+       <property name="order"  value="1"/>
+    </bean>
+   
+   <!-- 	Resource View Resolver setting --> 
+   <!-- 타일즈가 아닌 경우, 컨트롤러의 값을 리턴받아야함 -->
+   <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+      <property name="prefix"  value="/WEB-INF/views/"/> 
+      <property name="suffix" value=".jsp" /> <!-- 반복되는 주소는 자동으로 적어준다 -->
+      <property name="order"  value="2"/> <!-- 순서 -->
+   </bean>
+    
+<!--     <mvc:annotation-driven>
+		<mvc:message-converters>
+			@ResponseBody로 String 처리할때 한글처리
+			<bean class="org.springframework.http.converter.StringHttpMessageConverter">
+				<property name="supportedMediaTypes">
+					<list>
+						<value>text/html;charset=UTF-8</value>
+					</list>
+				</property>
+			</bean>
+		</mvc:message-converters>
+	</mvc:annotation-driven> -->
+    
       
 </beans>

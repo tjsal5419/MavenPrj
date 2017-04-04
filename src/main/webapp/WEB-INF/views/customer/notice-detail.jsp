@@ -24,7 +24,7 @@
 	                  <tr>
 	                     <th>제목</th>
 	                     <td colspan="4">
-	                     		${n.title}%	
+	                     		${n.title}
 	                     </td>
 	                  </tr>
 	                  
@@ -58,7 +58,7 @@
 	                  <tr>
 	                     <th>첨부파일</th>
 	                     <td colspan="4">
-	                     		<%
+<%-- 	                     		<%
 	                     			List ns = new ArrayList();
 	                     			ns.add("하하1");
 	                     			ns.add("하하2");
@@ -83,16 +83,19 @@
 	                     		<c:forEach var="i" begin="1" end="3">
 	                     			맥보이~${i}<br/>
 	                     		</c:forEach>
+	                     		
+	                     		 --%>
 	                     		<c:forEach items="${list }" var="f">
-	                     		<a href="upload/${f.src }" download>${f.src }</a>
+	                     		<a href="/resource/upload/${f.src }" download>${f.src }</a>
 	                     		</c:forEach>
 	                     </td>
 	                  </tr>
 	                 
 						<tr>
 	                     <td colspan="5">
-	                     		${n.content }
-	                     		<img src="upload/" />
+	                     	<c:forEach items="${list }" var="f">
+	                     		<img src="/resources/upload/${f.src }" />
+	                     	</c:forEach>
 	                     		
 	                     </td>
 	                  </tr>	  	             
@@ -116,6 +119,7 @@
 						</c:if>
              		</li>
 					<li>
+						<span>다음글</span>
 						<c:if test="${empty next}">
              				<span>다음 글이 존재하지 않습니다.</span>
 						</c:if>

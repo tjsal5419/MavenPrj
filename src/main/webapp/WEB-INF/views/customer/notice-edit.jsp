@@ -56,7 +56,14 @@
 	                     <td colspan="4">
 	                     		<textarea name="content" rows="20" cols="80">${n.content }</textarea>
 	                     </td>
-	                  </tr>	                  
+	                  </tr>
+	                  
+	                  <tr>
+	                     <th>첨부파일</th>
+	                     <td colspan="4">
+	                     		<textarea name="content" rows="20" cols="80">${n.content }</textarea>
+	                     </td>
+	                  </tr>	               	                  	                  
 	                  
 	               </tbody>
 	            </table>
