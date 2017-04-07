@@ -1,11 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="security" uri="http://www.springframework.org/security/tags" %>
+<c:set var="root" value="${pageContext.request.contextPath}"/>
 	<header id="header">
 		<div class="content-container">
 
 			<h1 id="logo">
-				<img src="/MavenPrj/resource/images/logo.png" alt="뉴렉처 온라인">
+				<img src="${root }/resource/images/logo.png" alt="뉴렉처 온라인">
 			</h1>
 
 			<section>
@@ -35,21 +37,41 @@
 					</form>
 				</div>
 
+				<security:authentication property="authorities" var="auth"/>
+				<security:authentication property="name" var="name"/>
+				
+				<div>
+					name:${name }
+					<c:forEach items="auth" var="role">
+						role: ${role}
+					</c:forEach>
+				</div>
+
 				<nav id="account-menu" class="hr-menu">
 					<h1 class="hidden">계정메뉴</h1>
 					<ul>
-						<li><a href="../index.html">HOME</a></li>
-						<li><a href="../account/login.html">로그인</a></li>
-						<li><a href="../join.html">회원가입</a></li>
+						<li><a href="${root }/index">HOME</a></li>
+						<c:if test="${empty pageContext.request.userPrincipal.name }">		
+						<li><a href="${root }/joinus/login">로그인</a></li>
+						<li><a href="${root }/joinus/join">회원가입</a></li>
+						</c:if>	
+		
+						<security:authorize  access="isAuthenticated()">
+						<li><a href="${root }/j_spring_security_logout">
+						 <security:authentication property="name"/>님 로그아웃
+						</a></li>
+						</security:authorize>
 					</ul>
 				</nav>
 
 				<nav id="member-menu" class="hr-menu">
+					
 					<h1 class="hidden">회원메뉴</h1>
 					<ul>
-						<li><input type="button" value="마이페이지" /></li>
-						<li><input type="button" value="고객 센터" /></li>
+						<li><a href="${root }/joinus/mypage">마이페이지</a></li>
+						<li><a href="${root }/customer/notice">고객센터</a></li>
 					</ul>
+					
 				</nav>
 
 			</section>

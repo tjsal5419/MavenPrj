@@ -13,13 +13,40 @@
    xmlns="http://xmlns.jcp.org/xml/ns/javaee"
    xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"
    metadata-complete="false" version="3.1">
-
    <display-name>Archetype Created Web Application</display-name>
+	
+   <listener> <!-- Context Param Lisetner -->
+      <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+   </listener>	
+	
+	<!-- 분리해놓은 지시서를 추가해줌 -->
+   	<context-param>
+   		<param-name>contextConfigLocation</param-name>
+   		<param-value>
+   			/WEB-INF/spring/service-context.xml
+   			/WEB-INF/spring/security-context.xml <!-- 아래 init-param에 다 넣기보단 따로 뺴주는게 좋음. -->
+   		</param-value>
+   	</context-param>
+      
     <servlet>
         <servlet-name>dispatcher</servlet-name> <!-- 역할을 해줄 dispatcher Servlet을 생성해줘야함 -->
         <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+        <init-param>
+        	<param-name>contextConfigLocation</param-name> <!-- 예약된 변수 명이므로 !@스펠링 주의 @! -->
+        	<param-value>/WEB-INF/spring/servlet-context.xml</param-value>
+        </init-param>
 		<load-on-startup>1</load-on-startup> <!-- tomcat실행 시 바로 컨테이너에 서블릿을 load해준다. 원래는 url요청 시 load -->
     </servlet>
+
+	<!-- intercept url을 하게하는 관리자 -->
+	<filter> 
+      <filter-name>springSecurityFilterChain</filter-name> 
+       <filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class> 
+   </filter> 
+   <filter-mapping> 
+      <filter-name>springSecurityFilterChain</filter-name> 
+      <url-pattern>/*</url-pattern> 
+   </filter-mapping>
     
 
     <servlet-mapping>

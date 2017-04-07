@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans:beans xmlns:beans="http://www.springframework.org/schema/beans"
+   xmlns="http://www.springframework.org/schema/security" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+   xsi:schemaLocation="
+       http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd                
+        http://www.springframework.org/schema/security
+        http://www.springframework.org/schema/security/spring-security.xsd">
+
+	<!-- name은 별칭(여러개가 올 수 있다.), id는 bean의 진짜 이름(유일한 값이다) -->
+	<beans:bean id="successHandler" class="com.newlecture.web.handler.NewlecSuccessHandler">
+	</beans:bean>
+
+	<!-- 해당 패턴에 접근할 때 ROLE_USER 그룹만 접근가능하게 하라 -->
+   <http use-expressions="true"> 
+   	<!-- 로그인 창을 알아서 마련하려면 auto-config="true"하면 자동 생성 -->
+     <!-- 마이페이지는 인증 정보에따라 페이지를 분배해주는 라우터 역할 -->
+	  <form-login login-page="/joinus/login" 
+	  default-target-url="/joinus/mypage"
+	  always-use-default-target="true"/>
+	  
+	  <logout logout-success-url="/index"/> <!-- 로그아웃 후 이동할 경로 --> 
+      <intercept-url pattern="/customer/notice-detail" access="ROLE_USER" />
+      <intercept-url pattern="/joinus/mypage" access="ROLE_USER" />
+	  <!-- 관리자 권한 부여하기 -->
+      <intercept-url pattern="/admin/**" access="ROLE_ADMIN" />
+      
+      <!-- 강사의 권한 부여하기 -->
+      <intercept-url pattern="/teacher/**" access="ROLE_TEACHER" />
+      
+   </http>
+	
+	<!-- DB연동해서  회원 정보 가져오기, ref의 name을 가진 Bean을 Service-Context에 새로 추가해준다. -->
+	<!-- 쿼리문은 Spring이 요구하는 형식에 맞는 결과가 나오도록 작성해야한다. 여기선 userid, password, enabled(활성 여부) 순 -->
+   <authentication-manager>
+      <authentication-provider>
+      	<jdbc-user-service data-source-ref="dataSource"
+      	users-by-username-query="SELECT ID userid, PWD password,
+      	 1 enabled FROM MEMBER WHERE ID=?"
+      	authorities-by-username-query="SELECT MEMBER_ID userid, ROLE_ID authorities
+      	 FROM MEMBER_ROLE WHERE MEMBER_ID=?"
+      	/>
+      </authentication-provider>
+   </authentication-manager>
+</beans:beans>

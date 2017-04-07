@@ -1,4 +1,4 @@
-package com.newlecture.web.controller.customer;
+package com.newlecture.web.controller;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -186,6 +186,7 @@ public class CustomerController {
 		return "redirect:notice";
 		// 컨트롤러와 뷰를 연결함
 	}
+
 	
 
 }

@@ -1,3 +1,5 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -5,7 +7,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<form action="../member-reg" method="post">
+	<form method="post">
 	<table border="1">
       <tr>
          <th><label>아이디</label></th>
