@@ -1,2 +1,5 @@
 eclipse.preferences.version=1
+encoding//src/main/java/com/newlecture/web/dao/mysql=UTF-8
+encoding//src/main/java/com/newlecture/web/dao/mysql/MySQLNoticeDao.java=UTF-8
+encoding//src/main/java/com/newlecture/web/dao/mysql/MySQLNoticeFileDao.java=UTF-8
 encoding//src/main/webapp/WEB-INF/views/joinus/join.jsp=UTF-8

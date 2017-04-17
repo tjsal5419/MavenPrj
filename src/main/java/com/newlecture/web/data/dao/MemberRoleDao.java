@@ -5,10 +5,10 @@ import java.util.List;
 import com.newlecture.web.data.entity.MemberRole;
 
 public interface MemberRoleDao {
-	public String getDefaultRoleById(String memberId);
-    List<MemberRole> getRolesOfMember(String memberId);
-    List<MemberRole> getList();
-    int insert(MemberRole memberRole);
-    int delete(MemberRole memberRole);
-    int update(MemberRole memberRole);
+   String getDefaultRoleById(String memberId);
+   List<MemberRole> getRolesOfMember(String memberId);
+   List<MemberRole> getList();
+   int insert(MemberRole memberRole);
+   int delete(MemberRole memberRole);
+   int update(MemberRole memberRole);
 }

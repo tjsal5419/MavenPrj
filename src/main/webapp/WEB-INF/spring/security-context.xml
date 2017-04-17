@@ -20,13 +20,13 @@
 	  always-use-default-target="true"/>
 	  
 	  <logout logout-success-url="/index"/> <!-- 로그아웃 후 이동할 경로 --> 
-      <intercept-url pattern="/customer/notice-detail" access="ROLE_USER" />
-      <intercept-url pattern="/joinus/mypage" access="ROLE_USER" />
+      <intercept-url pattern="/customer/notice-detail" access="hasRole('ROLE_USER')" />
+      <intercept-url pattern="/joinus/mypage" access="hasRole('ROLE_USER')" />
 	  <!-- 관리자 권한 부여하기 -->
-      <intercept-url pattern="/admin/**" access="ROLE_ADMIN" />
+      <intercept-url pattern="/admin/**" access="hasRole('ROLE_ADMIN')" />
       
       <!-- 강사의 권한 부여하기 -->
-      <intercept-url pattern="/teacher/**" access="ROLE_TEACHER" />
+      <intercept-url pattern="/teacher/**" access="hasRole('ROLE_TEACHER')" />
       
    </http>
 	

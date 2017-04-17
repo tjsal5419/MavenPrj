@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 
 import org.apache.catalina.connector.Request;
+import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -39,13 +40,17 @@ public class CustomerController {
 	private NoticeDao noticeDao; /*컨테이너가 자동으로 담아준다*/
 	@Autowired
 	private NoticeFileDao noticeFileDao;
+	
+	@Autowired
+	private SqlSession sqlSession;
 
 	@RequestMapping("notice")
 	public String notice(@RequestParam(value="p", defaultValue="1")int page,
 			@RequestParam(value="q", defaultValue="")String query,
 			@RequestParam(value="f", defaultValue="TITLE")String field, Model model){
 		
-		List<NoticeView> list = noticeDao.getList(page, field, query);
+		//List<NoticeView> list = noticeDao.getList(page, field, query);
+		List<NoticeView> list = sqlSession.getMapper(NoticeDao.class).getList(page, field, query);
 		
 		int size = noticeDao.getSize(field, query);
 		

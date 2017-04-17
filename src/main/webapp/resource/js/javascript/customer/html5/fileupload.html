@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<style>
+	#upload-zone{
+		background : yellow;
+		width : 500px;
+		height : 300px;
+		border : 1px solid black;
+	}
+	
+	input[type='file']{
+		display : none;
+	
+	}
+	
+	#drag-zone{
+		background : gray;
+		width : 500px;
+		height : 200px;
+	}
+	
+	#drag-zone > div {
+		background : blue;
+		width : 100px;
+		height : 100px;
+	}
+	
+	#upload-zone.enter{
+		background : pink;
+	}
+	
+	#image{
+		width : 100px;
+		height : 100px;
+	}
+</style>
+	
+<script>
+</script>
+
+<script>
+// 버블발생 막기 위한 예시
+	$(function(){
+
+// addListener은 DOM만 가능하므로, get함수로 jquery를 dom으로 내려준다.
+		$("#drag-zone").get(0).addEventListener("click",function(event){
+			event.stopPropagation();
+			//alert("zone");
+		},true); 
+//		true할 경우 통지 과정에 캡쳐된다. false는 아래->위 실행 과정에서 실행 
+
+
+		$("#drag-zone > div").get(0).addEventListener("click",function(){
+			//alert("div");
+		},true);
+
+/* 		
+		$("#drag-zone").click(function(){
+
+			alert("zoen");
+		});
+
+		$("#drag-zone>div").click(function(){
+			
+			event.stopPropagation();
+			alert("div");
+
+		});
+ */
+		
+// 		클릭 버튼 대신 다른 것 클릭 시 클릭 버튼 trigger
+/* 		$("#upload-zone").click(function(){
+			$("input[type='file']").trigger("click");
+		}); */
+		
+  		$("#drag-zone > div").bind("dragstart",function(event){ //여기의 이벤트는 Jquery이벤트
+  			var dt = event.originalEvent.dataTransfer;
+  			dt.effectAllwed = "copy";
+  			dt.setData("text/plain","http://www.google.com");
+  			
+ 			console.log("dragstart");
+ 		});
+ 		
+		 $("#upload-zone").bind("dragenter", function(){
+			console.log("enter");
+			$(this).addClass("enter")
+		 });
+		 
+		 $("#upload-zone").bind("dragleave", function(){
+				console.log("leave");
+				$(this).removeClass("enter");
+		 });
+		 
+		 $("upload-zone").bind("drop",function(ev){
+			    ev.originalEvent.preventDefault(); // ev가 window.event일 때 동작
+			    ev.originalEvent.stopPropagation();
+
+			    var dt = ev.originalEvent.dataTransfer;
+			    
+			    console.log("drop");
+
+				var valid = dt.types[0].indexOf('Files')>=0;
+
+				if(!valid){
+					alert("파일형식이 아닙니다.");
+					return;
+				}
+				var size = dt.files.len;
+
+				if(size > 1){
+					alert("두개 이상의 파일은 전송할 수 없습니다.");
+					return;
+				}
+
+
+				var request = new XMLHttpRequest();
+				request.addEventListener("progress",function(){
+
+				});
+
+				request.addEventListener("onload",function(){
+					var id = new FormData();
+					fd.append("file",dt.files[0]);
+				});
+
+				request.onload
+
+				request.open("POST","/upload");
+				request.send(dt.files[0]);
+			    //ev.target.appendChild(document.getElementById(data));
+		 });
+	})
+	
+/* 	function allowDrop(ev) {
+	    ev.preventDefault();
+	}
+
+	function drag(ev) {
+	    ev.dataTransfer.setData("text", ev.target.id);
+	}
+
+	function drop(ev) {
+	    ev.preventDefault();
+	    var data = ev.dataTransfer.getData("text");
+	    ev.target.appendChild(document.getElementById(data));
+	} */
+</script>
+<!-- 
+드래그 드랍 => 데이터를 심고 꺼낸다.
+파일 업로드(절름발이) => 드랍만 처리하면 된다.
+DND는 드래그도 처리해야하므로  
+
+
+-->
+</head>
+<body>
+	<div id="upload-zone">
+		<div>업로드할 파일을 선택 또는 끌어놓기</div>
+	</div>
+	<input type="file" />
+	<div id="drag-zone">
+		<div draggable="true"> 헤헤 </div>
+		<img id="image" src="../../images/1.jpg" src="http://www.google.com"/>
+	</div>
+</body>
+</html>
