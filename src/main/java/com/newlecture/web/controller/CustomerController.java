@@ -51,7 +51,7 @@ public class CustomerController {
 		
 		//List<NoticeView> list = noticeDao.getList(page, field, query);
 		List<NoticeView> list = sqlSession.getMapper(NoticeDao.class).getList(page, field, query);
-		
+		/*
 		int size = noticeDao.getSize(field, query);
 		
 		int last = 0;
@@ -59,10 +59,10 @@ public class CustomerController {
 			last = size/10 +1;
 		else
 			last = size / 10;
-		
+		*/
 		model.addAttribute("list",list);
-		model.addAttribute("size",size);
-		model.addAttribute("last",last);
+		//model.addAttribute("size",size);
+		//model.addAttribute("last",last);
 		model.addAttribute("f",field);
 		model.addAttribute("q",query);
 		model.addAttribute("p",page);

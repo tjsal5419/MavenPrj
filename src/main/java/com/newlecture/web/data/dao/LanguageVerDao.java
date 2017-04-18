@@ -11,4 +11,6 @@ public interface LanguageVerDao {
 	int add(LanguageVer languageVer);
 	int update(LanguageVer languageVer);
 	int delete(String code);
+	List<LanguageVer> getList(int page, String field, String query);
+	List<LanguageVer> getList(int page);
 }

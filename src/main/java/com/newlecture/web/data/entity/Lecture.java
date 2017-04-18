@@ -1,5 +1,7 @@
 package com.newlecture.web.data.entity;
 
+import java.util.List;
+
 public class Lecture {
 	
 	private String code;
@@ -12,8 +14,25 @@ public class Lecture {
 	private String impactContext;
 	private String levelCode;
 	private String memberId;
+	// 관계 entity를 추가해줌(부모엔티티 & 자식엔티티)
+	private List<LecturePlatform> platforms;
+	private List<LectureLanguage> languages;
+	//부모 레벨,멤버
+	private Level level;
+	private Member member;
 	
-	
+	public Level getLevel() {
+		return level;
+	}
+	public void setLevel(Level level) {
+		this.level = level;
+	}
+	public Member getMember() {
+		return member;
+	}
+	public void setMember(Member member) {
+		this.member = member;
+	}
 	public String getCode() {
 		return code;
 	}
@@ -76,5 +95,17 @@ public class Lecture {
 	}
 	
 	
-	
+	public List<LecturePlatform> getPlatforms() {
+		return platforms;
+	}
+	public void setPlatforms(List<LecturePlatform> platforms) {
+		this.platforms = platforms;
+	}
+	public List<LectureLanguage> getLanguages() {
+		return languages;
+	}
+	public void setLanguages(List<LectureLanguage> languages) {
+		this.languages = languages;
+	}
+
 }

@@ -6,6 +6,8 @@ import com.newlecture.web.data.entity.LecturePlatform;
 
 
 public interface LecturePlatformDao {
+	List<LecturePlatform> getList(int page);
+	List<LecturePlatform> getList(int page, String field, String query);
 	List<LecturePlatform> getList();
 	LecturePlatform get(String code);
 	int add(LecturePlatform notice);

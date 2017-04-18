@@ -47,17 +47,18 @@
 	$(function(){
 
 // addListener은 DOM만 가능하므로, get함수로 jquery를 dom으로 내려준다.
-		$("#drag-zone").get(0).addEventListener("click",function(event){
+/* 		$("#drag-zone").get(0).addEventListener("click",function(event){
 			event.stopPropagation();
 			//alert("zone");
 		},true); 
+ */		
 //		true할 경우 통지 과정에 캡쳐된다. false는 아래->위 실행 과정에서 실행 
 
 
-		$("#drag-zone > div").get(0).addEventListener("click",function(){
+/* 		$("#drag-zone > div").get(0).addEventListener("click",function(){
 			//alert("div");
 		},true);
-
+ */
 /* 		
 		$("#drag-zone").click(function(){
 
@@ -77,63 +78,80 @@
 			$("input[type='file']").trigger("click");
 		}); */
 		
-  		$("#drag-zone > div").bind("dragstart",function(event){ //여기의 이벤트는 Jquery이벤트
-  			var dt = event.originalEvent.dataTransfer;
-  			dt.effectAllwed = "copy";
-  			dt.setData("text/plain","http://www.google.com");
-  			
- 			console.log("dragstart");
- 		});
- 		
-		 $("#upload-zone").bind("dragenter", function(){
-			console.log("enter");
-			$(this).addClass("enter")
-		 });
-		 
-		 $("#upload-zone").bind("dragleave", function(){
-				console.log("leave");
-				$(this).removeClass("enter");
-		 });
-		 
-		 $("upload-zone").bind("drop",function(ev){
-			    ev.originalEvent.preventDefault(); // ev가 window.event일 때 동작
-			    ev.originalEvent.stopPropagation();
+	     $("#drag-zone > div").bind("dragstart", function(event){
+	         var dt = event.originalEvent.dataTransfer;
+	         dt.effectAllowed = "copy";
 
-			    var dt = ev.originalEvent.dataTransfer;
-			    
-			    console.log("drop");
+	         dt.setData("text/plain", "http://www.mozilla.org");
 
-				var valid = dt.types[0].indexOf('Files')>=0;
+	         console.log("start");
+	      }); 
+	      
+	      /* $("#drag-zone > div").bind("drag", function(){
+	         console.log("drag");
+	      }); */
+	      
+	      $("#upload-zone").bind("dragenter", function(){
+	         $(this).addClass("enter");         
+	         console.log("entered");
+	      }); 
+	      
+	      $("#upload-zone").bind("dragover", function(){
+	         event.preventDefault();
+	         event.stopPropagation();
+	         console.log("over");
+	      });
+	      
+	      $("#upload-zone").bind("dragleave", function(){
+	         $(this).removeClass("enter");
+	         console.log("leave");
+	      });
+	      
+	      $("#upload-zone").bind("drop", function(event) {
+	         event.preventDefault();
+	         event.stopPropagation();
+	          var dt = event.originalEvent.dataTransfer;
+	          var validate = dt.types[0].indexOf('Files') >= 0;
 
-				if(!valid){
-					alert("파일형식이 아닙니다.");
-					return;
-				}
-				var size = dt.files.len;
+	         if(!validate){
+	            alert("파일 형식이 아닙니다.");
+	            return;
+	         }
+	         
+	          var size = dt.files.length;
+	          
+	          if(size > 1){
+	             alert("두 개 이상의 파일을 업로드할 수 없습니다.");
+	            return;
+	          }
+	          
+	          
+	          var request = new XMLHttpRequest();
+	          //request.onreadyStateChange - function(){};
+	          //request.onload = function(){};
+	          request.addEventListener("progress", function(){
+	             
+	          });
+	          
+	          request.addEventListener("load", function(){
+	             
+	          });
+	          
+	         request.addEventListener("error", function(){
+	             
+	          });
+	          
+	          request.open("POST", "../../../../../upload");
+	          
+	          var fd = new FormData();
+	          fd.append("file", dt.files[0]);
+	          
+	          request.send(fd);
+	          //request.send(dt.files[0]);
+	          
+	      });
+	   });
 
-				if(size > 1){
-					alert("두개 이상의 파일은 전송할 수 없습니다.");
-					return;
-				}
-
-
-				var request = new XMLHttpRequest();
-				request.addEventListener("progress",function(){
-
-				});
-
-				request.addEventListener("onload",function(){
-					var id = new FormData();
-					fd.append("file",dt.files[0]);
-				});
-
-				request.onload
-
-				request.open("POST","/upload");
-				request.send(dt.files[0]);
-			    //ev.target.appendChild(document.getElementById(data));
-		 });
-	})
 	
 /* 	function allowDrop(ev) {
 	    ev.preventDefault();

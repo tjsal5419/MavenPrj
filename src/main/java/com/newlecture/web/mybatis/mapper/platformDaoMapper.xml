@@ -19,7 +19,7 @@
       WHERE CODE=#{code}
    </select>
    
-   <insert id="add" >
+   <insert id="add" parameterType="com.newlecture.web.data.entity.Platform">
       <selectKey order="BEFORE" keyProperty="code" resultType="String">
          SELECT MAX(CAST(CODE AS UNSIGNED))+1 CODE FROM NOTICE
       </selectKey>
@@ -37,7 +37,7 @@
       );
    </insert>
    
-   <update id="update">
+   <update id="update" parameterType="com.newlecture.web.data.entity.Platform">
       UPDATE `newlecture`.`PLATFORM_VER`
       SET
       `CODE` = #{code},

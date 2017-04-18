@@ -2,6 +2,7 @@ package com.newlecture.web.data.dao;
 
 import java.util.List;
 
+import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
 
 import com.newlecture.web.data.entity.Notice;
@@ -25,19 +26,19 @@ public interface NoticeDao {
 	 */
 	List<NoticeView> getList();
 	List<NoticeView> getList(int page);
-	List<NoticeView> getList(int page, String field, String query);
+	List<NoticeView> getList(@Param("page")int page, @Param("field")String field, @Param("query")String query);
 	
 	String lastCode();
 	
 	//하나의 NoticeView의 정보를 가져오는 함수
 	NoticeView get(String code);
 	NoticeView getPrev(String code);
-	NoticeView gerNext(String code);
+	NoticeView getNext(String code);
 	
 
 	//검색 결과에 따른 게시물 수를 가져오는 함수
 	int getSize();
-	int getSize(String field, String query);
+	int getSize(@Param("field")String field,@Param("query")String query);
 	
 	/**
 	 * update

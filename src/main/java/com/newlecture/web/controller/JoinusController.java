@@ -44,8 +44,9 @@ public class JoinusController {
 		
 		String memberId = principal.getName();
 
-		String defaultRole = memberRoleDao.getDefaultRoleById(memberId);
+		//String defaultRole = memberRoleDao.getDefaultRoleById(memberId);
 
+		String defaultRole = "ROLTE_TEACHER";
 		if (defaultRole.equals("ROLE_ADMIN"))
 			return "redirect:../admin/index";
 		else if (defaultRole.equals("ROLE_TEACHER"))

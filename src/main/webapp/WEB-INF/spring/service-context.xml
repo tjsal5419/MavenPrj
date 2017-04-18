@@ -28,9 +28,23 @@
 	</bean>
 
 	<!-- 객체를 명시한 bean -->
-	<bean class="com.newlecture.web.dao.mysql.MySQLNoticeDao" />
+<!-- 	<bean class="com.newlecture.web.dao.mysql.MySQLNoticeDao" />
 	<bean class="com.newlecture.web.dao.mysql.MySQLNoticeFileDao" />
 	<bean class="com.newlecture.web.dao.mysql.MySQLMemberDao" />
 	<bean class="com.newlecture.web.dao.mysql.MySQLMemberRoleDao" />
+ -->
+	<bean class="com.newlecture.web.dao.mybatis.MyBatisLanguageDao" />
+	<bean class="com.newlecture.web.dao.mybatis.MyBatisLanguageVerDao" />
+	<bean class="com.newlecture.web.dao.mybatis.MyBatisLectureDao" />
+	<bean class="com.newlecture.web.dao.mybatis.MyBatisLectureLanguageDao" />
+	<bean class="com.newlecture.web.dao.mybatis.MyBatisLecturePlatformDao" />
+	<bean class="com.newlecture.web.dao.mybatis.MyBatisLevelDao" />
+	<bean class="com.newlecture.web.dao.mybatis.MyBatisMemberDao" />
+	<bean class="com.newlecture.web.dao.mybatis.MyBatisMemberRoleDao" />
+	<bean class="com.newlecture.web.dao.mybatis.MyBatisNoticeDao" />
+	<bean class="com.newlecture.web.dao.mybatis.MyBatisPlatformDao" />
+	<bean class="com.newlecture.web.dao.mybatis.MyBatisPlatformVerDao" />
+	<bean class="com.newlecture.web.dao.mybatis.MyBatisNoticeFileDao" />
+	<bean class="com.newlecture.web.service.TeacherService" />
 
 </beans>

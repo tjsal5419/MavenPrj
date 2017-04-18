@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.newlecture.web.data.dao.LectureLanguageDao">
+   
+   <select id="getList" resultType="com.newlecture.web.data.entity.LectureLanguage">
+      SELECT `LECTURE_LANGUAGE`.`CODE`,
+          `LECTURE_LANGUAGE`.`VER_CODE`,
+          `LECTURE_LANGUAGE`.`LECTURE_CODE`,
+          `LECTURE_LANGUAGE`.`LANGUAGE_VER_CODE`
+      FROM `newlecture`.`LECTURE_LANGUAGE`
+
+   </select>
+   
+    <insert id="add" parameterType="com.newlecture.web.data.entity.LectureLanguage">
+       <selectKey order="BEFORE" keyProperty="code" resultType="String">
+         select max(cast(code as unsigned))+1 Code from LECTURELANGUAGE
+      </selectKey>
+      INSERT INTO `newlecture`.`LECTURE_LANGUAGE`
+         (
+            `CODE`,
+            `VER_CODE`,
+            `LECTURE_CODE`,
+            `LANGUAGE_VER_CODE`
+         )
+         VALUES
+         (   
+            #{code},
+            #{ver_code},
+            #{lecture_code},
+            #{language_ver_code}
+         )
+   </insert>
+   
+   <update id="update" parameterType="com.newlecture.web.data.entity.LectureLanguage">
+      UPDATE `newlecture`.`LECTURE_LANGUAGE`
+      SET
+         `VER_CODE` = #{ver_code},
+         `LECTURE_CODE` = #{lecture_code},
+         `LANGUAGE_VER_CODE` = #{language_ver_code}
+      WHERE `CODE` = #{code};
+
+   </update>
+
+   <delete id="delete">
+      DELETE FROM `newlecture`.`LECTURE_LANGUAGE`
+      WHERE CODE = #{code}
+   
+   </delete>
+</mapper>

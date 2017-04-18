@@ -10,4 +10,6 @@ public interface LanguageDao {
 	int add(Language language);
 	int update(Language language);
 	int delete(String language);
+	List<Language> getList(int page, String field, String query);
+	List<Language> getList(int page);
 }
