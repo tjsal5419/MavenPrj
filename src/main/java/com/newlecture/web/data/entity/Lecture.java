@@ -17,8 +17,25 @@ public class Lecture {
 	// 관계 entity를 추가해줌(부모엔티티 & 자식엔티티)
 	private List<LecturePlatform> platforms;
 	private List<LectureLanguage> languages;
+	private List<Language> languagesOfLecture;
+	private List<Platform> PlatformsOfLecture;
+	
+	
+	public List<Platform> getPlatformsOfLecture() {
+		return PlatformsOfLecture;
+	}
+	public void setPlatformsOfLecture(List<Platform> platformsOfLecture) {
+		PlatformsOfLecture = platformsOfLecture;
+	}
+	public List<Language> getLanguagesOfLecture() {
+		return languagesOfLecture;
+	}
+	public void setLanguagesOfLecture(List<Language> languagesOfLecture) {
+		this.languagesOfLecture = languagesOfLecture;
+	}
 	//부모 레벨,멤버
 	private Level level;
+
 	private Member member;
 	
 	public Level getLevel() {
@@ -107,5 +124,6 @@ public class Lecture {
 	public void setLanguages(List<LectureLanguage> languages) {
 		this.languages = languages;
 	}
+
 
 }

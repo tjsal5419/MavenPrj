@@ -11,7 +11,9 @@ public interface MemberDao {
 	List<Member> getList();
 	List<Member> getList(String query);
 	List<Member> getList(String query, String pwd, String name);
-	int add(Member member);
 	
 	Member get(String id);
+	int add(Member member);
+	int delete(String id);
+	int modify(Member member);
 }

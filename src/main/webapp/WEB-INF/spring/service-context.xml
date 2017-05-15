@@ -1,16 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:context="http://www.springframework.org/schema/context"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="
        http://www.springframework.org/schema/beans
-        http://www.springframework.org/schema/beans/spring-beans.xsd">
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/context/spring-context.xsd">
 
 	<bean id="dataSource"
 		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
 		<property name="driverClassName" value="com.mysql.jdbc.Driver" />
 		<property name="url"
 			value="jdbc:mysql://211.238.142.84/newlecture?autoReconnect=true&amp;useSSL=false&amp;characterEncoding=UTF-8" />
-		<property name="username" value="newlec" />
+		<property name="username" value="sist" />
 		<property name="password" value="sclass" />
 	</bean>
 
@@ -19,7 +22,7 @@
 	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
 		<property name="dataSource" ref="dataSource" />
 		<property name="mapperLocations"
-			value="classpath:com/newlecture/web/mybatis/mapper/*.xml" />
+			value="classpath*:com/newlecture/web/mybatis/mapper/*.xml" />
 	</bean>
 
 	<!-- 자동으로 db를 연결하고 닫아주는 Bean -->
@@ -34,7 +37,6 @@
 	<bean class="com.newlecture.web.dao.mysql.MySQLMemberRoleDao" />
  -->
 	<bean class="com.newlecture.web.dao.mybatis.MyBatisLanguageDao" />
-	<bean class="com.newlecture.web.dao.mybatis.MyBatisLanguageVerDao" />
 	<bean class="com.newlecture.web.dao.mybatis.MyBatisLectureDao" />
 	<bean class="com.newlecture.web.dao.mybatis.MyBatisLectureLanguageDao" />
 	<bean class="com.newlecture.web.dao.mybatis.MyBatisLecturePlatformDao" />
@@ -43,8 +45,11 @@
 	<bean class="com.newlecture.web.dao.mybatis.MyBatisMemberRoleDao" />
 	<bean class="com.newlecture.web.dao.mybatis.MyBatisNoticeDao" />
 	<bean class="com.newlecture.web.dao.mybatis.MyBatisPlatformDao" />
-	<bean class="com.newlecture.web.dao.mybatis.MyBatisPlatformVerDao" />
 	<bean class="com.newlecture.web.dao.mybatis.MyBatisNoticeFileDao" />
+	
+	<!-- Autowired가 필요한 곳을 설정해준다.(컨트롤러단 이외의 Autowired) -->
+	<context:annotation-config/>
 	<bean class="com.newlecture.web.service.TeacherService" />
+	<bean class="com.newlecture.web.service.AdminService" />
 
 </beans>

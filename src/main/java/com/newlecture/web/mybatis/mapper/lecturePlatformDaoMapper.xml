@@ -5,62 +5,49 @@
 <mapper namespace="com.newlecture.web.data.dao.LecturePlatformDao">
 
    <select id="getList" resultType="com.newlecture.web.data.entity.LecturePlatform">
-		SELECT `LECTURE_PLATFORM`.`CODE`,
-		    `LECTURE_PLATFORM`.`NAME`,
-		    `LECTURE_PLATFORM`.`VER_CODE`,
-		    `LECTURE_PLATFORM`.`VER`,
-		    `LECTURE_PLATFORM`.`LECTURE_CODE`,
-		    `LECTURE_PLATFORM`.`PLATFORM_VER_CODE`
+		SELECT `LECTURE_PLATFORM`.`PLATFORM_CODE`,
+		    `LECTURE_PLATFORM`.`LECTURE_CODE`
 		FROM `newlecture`.`LECTURE_PLATFORM`
+
    </select>
    
    <select id="get" resultType="com.newlecture.web.data.entity.LecturePlatform">
-		SELECT `LECTURE_PLATFORM`.`CODE`,
-		    `LECTURE_PLATFORM`.`NAME`,
-		    `LECTURE_PLATFORM`.`VER_CODE`,
-		    `LECTURE_PLATFORM`.`VER`,
-		    `LECTURE_PLATFORM`.`LECTURE_CODE`,
-		    `LECTURE_PLATFORM`.`PLATFORM_VER_CODE`
+		SELECT `LECTURE_PLATFORM`.`PLATFORM_CODE`,
+		    `LECTURE_PLATFORM`.`LECTURE_CODE`
 		FROM `newlecture`.`LECTURE_PLATFORM`
-		WHERE CODE=#{code}
+		WHERE PLATFORM_CODE=#{param1} AND LECTURE_CODE=#{param2}
    </select>
 
    <insert id="add" parameterType="com.newlecture.web.data.entity.LecturePlatform">
-      <selectKey order="BEFORE" keyProperty="code" resultType="String">
-         SELECT MAX(CAST(CODE AS UNSIGNED))+1 CODE 
-         FROM `newlecture`.`LECTURE_PLATFORM`
-      </selectKey>
 		INSERT INTO `newlecture`.`LECTURE_PLATFORM`
-		(`CODE`,
-		`NAME`,
-		`VER_CODE`,
-		`VER`,
-		`LECTURE_CODE`,
-		`PLATFORM_VER_CODE`)
+		(
+		PLATFORM_CODE,
+		LECTURE_CODE
+		)
 		VALUES
-		(#{code},
-		#{name},
-		#{verCode},
-		#{ver},
-		#{lectureCode},
-		#{platformVerCode})
+		(
+		#{platfromCode},
+		#{lectureCode}
+		)
    </insert>
    
    <update id="update" parameterType="com.newlecture.web.data.entity.LecturePlatform">
+<!--    		<selectKey order="BEFORE" keyProperty="platfromCode" resultType="String">
+   			SELECT PLATFORM_CODE 
+   			FROM LECTURE_PLATFORM
+   			WHERE  
+   		</selectKey> -->
 		UPDATE `newlecture`.`LECTURE_PLATFORM`
 		SET
-		`CODE` = #{code},
-		`NAME` = #{name},
-		`VER_CODE` = #{verCode},
-		`VER` = #{ver},
-		`LECTURE_CODE` = #{lectureCode},
-		`PLATFORM_VER_CODE` = #{platformVerCode}
-		WHERE `CODE` = #{code}
+		`PLATFORM_CODE` = #{platformCode},
+		`LECTURE_CODE` = #{lectureCode}
+<!-- 		WHERE `PLATFORM_CODE` = #{param2}
+		AND `LECTURE_CODE` = #{param3} -->
    </update>
    
    <delete id="delete" >
       DELETE FROM `newlecture`.`LECTURE_PLATFORM`
-      WHERE #{code}
+      		WHERE PLATFORM_CODE=#{param1} AND LECTURE_CODE=#{param2}
    </delete>
    
 </mapper>

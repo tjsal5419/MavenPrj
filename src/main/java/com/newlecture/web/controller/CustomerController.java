@@ -100,7 +100,12 @@ public class CustomerController {
 	
 	@RequestMapping(value="notice-edit", method=RequestMethod.POST)
 	public String noticeEdit(Notice notice){
-		noticeDao.update(notice.getTitle(), notice.getContent(), notice.getCode());
+		Notice n = new Notice();
+		n.setCode(notice.getCode());
+		n.setTitle(notice.getTitle());
+		n.setContent(notice.getContent());
+		
+		noticeDao.update(n);
 		
 		return "redirect:notice-detail?c="+notice.getCode();
 		// 컨트롤러와 뷰를 연결함

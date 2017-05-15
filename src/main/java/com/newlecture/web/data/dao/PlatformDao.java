@@ -10,4 +10,5 @@ public interface PlatformDao {
 	int add(Platform platform);
 	int update(Platform platform);
 	int delete(String code);
+	List<Platform> getPlatformsOfLecture(String lectureCode);
 }

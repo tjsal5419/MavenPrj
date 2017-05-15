@@ -8,11 +8,11 @@
       SELECT MAX(CAST(CODE AS UNSIGNED)) CODE 
       FROM NOTICE
    </select>
-   <!-- <select id="get" resultType="com.newlecture.web.entity.NoticeView" >
+   <select id="get" resultType="com.newlecture.web.data.view.NoticeView" >
       SELECT * 
       FROM NOTICE_VIEW 
       WHERE CODE=#{code}
-   </select> -->
+   </select>
    <select id="getPrev" resultType="com.newlecture.web.data.view.NoticeView" >
       SELECT * 
       FROM NOTICE_VIEW 
@@ -35,7 +35,7 @@
       WHERE BINARY ${param1} LIKE '%${param2}%'
    </select>
    
-   <!-- <insert id="add">
+   <insert id="add">
       <selectKey order="BEFORE" keyProperty="code" resultType="String">
          SELECT MAX(CAST(CODE AS UNSIGNED))+1 CODE FROM NOTICE
       </selectKey>
@@ -53,7 +53,7 @@
          #{content}
       )
       
-   </insert> -->
+   </insert>
    
    <delete id="delete">
       DELETE FROM NOTICE WHERE CODE=#{code}

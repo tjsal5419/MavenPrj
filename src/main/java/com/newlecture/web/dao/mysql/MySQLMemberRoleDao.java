@@ -111,5 +111,17 @@ public class MySQLMemberRoleDao implements MemberRoleDao {
 		return 0;
 	}
 
+	@Override
+	public List<MemberRole> getList(String memberId) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public int add(MemberRole memberRole) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
 
 }

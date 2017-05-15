@@ -45,6 +45,18 @@ public class MyBatisMemberDao implements MemberDao{
 		memberDao = sqlSession.getMapper(MemberDao.class);
 		return memberDao.get(id);
 	}
+
+	@Override
+	public int delete(String id) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public int modify(Member member) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
 	
 
 }

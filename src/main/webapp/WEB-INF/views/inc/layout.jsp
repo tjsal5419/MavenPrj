@@ -15,7 +15,7 @@
 <head>
 <meta charset="UTF-8">
 <title>으갹갹갹</title>
-<link href="/MavenPrj/resource/css/customer/style.css" type="text/css" rel="stylesheet" />
+<link href="/MyMavenPrj/resource/css/customer/style.css" type="text/css" rel="stylesheet" />
 
 <script>
 /* 	var ar = ["철수","영희","미진","선미"];

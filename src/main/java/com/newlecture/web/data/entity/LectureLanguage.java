@@ -1,29 +1,15 @@
 package com.newlecture.web.data.entity;
 
 public class LectureLanguage {
-	private String code;
-	private String verCode;
-	private String languageVerCode;
+	private String languageCode;
 	private String lectureCode;
-
+	private Language languages;
 	
-	public String getCode() {
-		return code;
+	public String getLanguageCode() {
+		return languageCode;
 	}
-	public void setCode(String code) {
-		this.code = code;
-	}
-	public String getVerCode() {
-		return verCode;
-	}
-	public void setVerCode(String verCode) {
-		this.verCode = verCode;
-	}
-	public String getLanguageVerCode() {
-		return languageVerCode;
-	}
-	public void setLanguageVerCode(String languageVerCode) {
-		this.languageVerCode = languageVerCode;
+	public void setLanguageCode(String languageCode) {
+		this.languageCode = languageCode;
 	}
 	public String getLectureCode() {
 		return lectureCode;
@@ -31,6 +17,14 @@ public class LectureLanguage {
 	public void setLectureCode(String lectureCode) {
 		this.lectureCode = lectureCode;
 	}
+	public Language getLanguages() {
+		return languages;
+	}
+	public void setLanguages(Language languages) {
+		this.languages = languages;
+	}
+
+	
 
 
 }

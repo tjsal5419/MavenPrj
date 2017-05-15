@@ -6,6 +6,7 @@ import com.newlecture.web.data.entity.Level;
 
 
 public interface LevelDao {
+	Level getLevelOfLecture(String lectureCode);
 	List<Level> getList();
 	Level get(String code);
 	int add(Level level);

@@ -3,15 +3,23 @@
     PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.newlecture.web.data.dao.PlatformDao">
-
-   <select id="getList" resultType="com.newlecture.web.data.entity.PlatformVer">
+	<select id="getPlatformsOfLecture" resultType="com.newlecture.web.data.entity.LecturePlatform">
+		SELECT *
+		FROM PLATFORM P	
+		INNER JOIN LECTURE_PLATFORM PP
+		ON P.CODE = PP.PLATFORM_CODE
+		INNER JOIN LECTURE L
+		ON L.CODE = PP.LECTURE_CODE
+		WHERE L.CODE = #{lectureCode};
+	</select>
+   <select id="getList" resultType="com.newlecture.web.data.entity.Platform">
       SELECT `PLATFORM_VER`.`CODE`,
       `PLATFORM_VER`.`NAME`,
       `PLATFORM_VER`.`PLATFORM_CODE`,
       FROM `newlecture`.`PLATFORM_VER`
    </select>
    
-   <select id="get" resultType="com.newlecture.web.data.entity.PlatformVer">
+   <select id="get" resultType="com.newlecture.web.data.entity.Platform">
       SELECT `PLATFORM_VER`.`CODE`,
       `PLATFORM_VER`.`NAME`,
       `PLATFORM_VER`.`PLATFORM_CODE`,

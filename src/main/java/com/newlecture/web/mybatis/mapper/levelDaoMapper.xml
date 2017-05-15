@@ -10,6 +10,13 @@
       FROM `newlecture`.`LEVEL`
    </select>
    
+   <select id="getLevelOfLecture" resultType="com.newlecture.web.data.entity.Level">
+		SELECT L.* 
+		FROM LEVEL L INNER JOIN LECTURE T
+		ON L.CODE = T.LEVEL_CODE
+		WHERE T.CODE = #{lectureCode}
+   </select>
+   
    <select id="get" resultType="com.newlecture.web.data.entity.Level">
       SELECT `LEVEL`.`CODE`,
       `LEVEL`.`NAME`

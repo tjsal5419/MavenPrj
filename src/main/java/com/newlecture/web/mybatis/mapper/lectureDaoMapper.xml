@@ -5,6 +5,7 @@
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.newlecture.web.data.dao.LectureDao">
+
     <select id="getList" resultType="com.newlecture.web.data.entity.Lecture">
       SELECT *
       FROM `newlecture`.`LECTURE`
@@ -23,7 +24,7 @@
       SELECT COUNT(CODE)
       FROM `newlecture`.`LECTURE`
       WHERE CODE= ${param1}
-      LIKE %'${param2}'%
+      LIKE '%${param2}%'
    </select>
    
    <delete id="delete">   

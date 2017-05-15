@@ -64,15 +64,15 @@ public class MySQLMemberDao implements MemberDao {
 	}
 
 	@Override
-	public void delete(String mid) {
+	public int delete(String mid) {
 		// TODO Auto-generated method stub
-		
+		return 0;
 	}
 
 	@Override
-	public void modify(Member member) {
+	public int modify(Member member) {
 		// TODO Auto-generated method stub
-		
+		return 0;
 	}
 
 
@@ -117,6 +117,13 @@ public class MySQLMemberDao implements MemberDao {
 		}
 
 	      return member;
+	}
+
+
+	@Override
+	public List<Member> getList(String query, String pwd, String name) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 /*	@Override

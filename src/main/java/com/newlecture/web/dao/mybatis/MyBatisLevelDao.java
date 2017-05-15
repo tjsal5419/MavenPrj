@@ -52,4 +52,11 @@ public class MyBatisLevelDao implements LevelDao{
       return levelDao.delete(code);
    }
 
+	@Override
+	public Level getLevelOfLecture(String lectureCode) {
+	      LevelDao levelDao;
+	      levelDao = sqlSession.getMapper(LevelDao.class);
+	      return levelDao.getLevelOfLecture(lectureCode);
+	}
+
 }

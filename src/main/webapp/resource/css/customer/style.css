@@ -74,7 +74,7 @@ body{
    font-weight:bold;
    color: #000;
    padding-left: 26px;
-   background: url("../../images/icon-recommend.png") no-repeat left center;
+   background: url("../images/icon-recommend.png") no-repeat left center;
 }
 
 .aside-main-title {
@@ -84,7 +84,7 @@ body{
 }
 
 .aside-menu-item {
-   background: url("../../images/bg-aside-menu-hsp.png") repeat-x left bottom;
+   background: url("../images/bg-aside-menu-hsp.png") repeat-x left bottom;
    height: 26px;
    line-height: 26px;
 }

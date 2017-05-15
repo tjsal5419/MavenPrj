@@ -42,11 +42,11 @@ public class JoinusController {
 	@RequestMapping("mypage")
 	public String mypage(Principal principal){
 		
-		String memberId = principal.getName();
+/*		String memberId = principal.getName();
 
-		//String defaultRole = memberRoleDao.getDefaultRoleById(memberId);
+		String defaultRole = memberRoleDao.getDefaultRoleById(memberId);*/
 
-		String defaultRole = "ROLTE_TEACHER";
+		String defaultRole = "ROLE_ADMIN";
 		if (defaultRole.equals("ROLE_ADMIN"))
 			return "redirect:../admin/index";
 		else if (defaultRole.equals("ROLE_TEACHER"))

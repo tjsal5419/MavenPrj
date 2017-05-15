@@ -5,9 +5,9 @@ import java.util.List;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import com.newlecture.web.data.dao.LanguageDao;
 import com.newlecture.web.data.dao.LectureDao;
 import com.newlecture.web.data.dao.LectureLanguageDao;
-import com.newlecture.web.data.dao.PlatformVerDao;
 import com.newlecture.web.data.entity.Lecture;
 import com.newlecture.web.data.entity.LectureLanguage;
 
@@ -15,29 +15,21 @@ public class MyBatisLectureLanguageDao implements LectureLanguageDao{
 
    @Autowired
    private SqlSession sqlSession;
-   
 
-	@Override
-	public List<LectureLanguage> getList(String code) {
-		LectureLanguageDao lectureLanguageDao;
-		lectureLanguageDao = sqlSession.getMapper(LectureLanguageDao.class);
-		return lectureLanguageDao.getList(code);
-	}
-	
    @Override
-   public int delete(String code) {
+   public int delete(String lectureCode, String languageCode) {
       LectureLanguageDao lectureLanguageDao;
       lectureLanguageDao = sqlSession.getMapper(LectureLanguageDao.class);
 
-      return lectureLanguageDao.delete(code);
+      return lectureLanguageDao.delete(lectureCode, languageCode);
    }
 
    @Override
-   public LectureLanguage get(String code) {
+   public LectureLanguage get(String lectureCode, String languageCode) {
       LectureLanguageDao lectureLanguageDao;
       lectureLanguageDao = sqlSession.getMapper(LectureLanguageDao.class);
 
-      return lectureLanguageDao.get(code);
+      return lectureLanguageDao.get(lectureCode, languageCode);
    }
 
    @Override
@@ -54,6 +46,13 @@ public class MyBatisLectureLanguageDao implements LectureLanguageDao{
       lectureLanguageDao = sqlSession.getMapper(LectureLanguageDao.class);
 
       return lectureLanguageDao.update(lectureLanguage);
+   }
+
+   @Override
+   public List<LectureLanguage> getList(String lectureCode) {
+      LectureLanguageDao lectureLanguageDao;
+       lectureLanguageDao = sqlSession.getMapper(LectureLanguageDao.class);
+       return lectureLanguageDao.getList(lectureCode);
    }
 
 

@@ -7,32 +7,25 @@
 <mapper namespace="com.newlecture.web.data.dao.LectureLanguageDao">
    
    <select id="getList" resultType="com.newlecture.web.data.entity.LectureLanguage">
-      SELECT `LECTURE_LANGUAGE`.`CODE`,
-          `LECTURE_LANGUAGE`.`VER_CODE`,
-          `LECTURE_LANGUAGE`.`LECTURE_CODE`,
-          `LECTURE_LANGUAGE`.`LANGUAGE_VER_CODE`
-      FROM `newlecture`.`LECTURE_LANGUAGE`
-
+		SELECT LANGUAGE_CODE languageCode, 
+		<!-- mySql은 _가 있으면 setter에 자동 매핑해주지 않음. 별칭 사용 -->
+		    LECTURE_CODE lectureCode
+		FROM `newlecture`.`LECTURE_LANGUAGE`
+		WHERE LECTURE_CODE = #{lectureCode}
    </select>
    
     <insert id="add" parameterType="com.newlecture.web.data.entity.LectureLanguage">
-       <selectKey order="BEFORE" keyProperty="code" resultType="String">
-         select max(cast(code as unsigned))+1 Code from LECTURELANGUAGE
-      </selectKey>
-      INSERT INTO `newlecture`.`LECTURE_LANGUAGE`
-         (
-            `CODE`,
-            `VER_CODE`,
-            `LECTURE_CODE`,
-            `LANGUAGE_VER_CODE`
-         )
-         VALUES
-         (   
-            #{code},
-            #{ver_code},
-            #{lecture_code},
-            #{language_ver_code}
-         )
+		INSERT INTO `newlecture`.`LECTURE_LANGUAGE`
+		(
+		`LECTURE_CODE`,
+		`LANGUAGE_CODE`
+		)
+		VALUES
+		(
+		#{lectureCode},
+		#{languageCode
+		)
+
    </insert>
    
    <update id="update" parameterType="com.newlecture.web.data.entity.LectureLanguage">
@@ -41,13 +34,13 @@
          `VER_CODE` = #{ver_code},
          `LECTURE_CODE` = #{lecture_code},
          `LANGUAGE_VER_CODE` = #{language_ver_code}
-      WHERE `CODE` = #{code};
+      WHERE LECTURE_CODE=#{param1} AND LANGUAGE_CODE = #{param2};
 
    </update>
 
    <delete id="delete">
       DELETE FROM `newlecture`.`LECTURE_LANGUAGE`
-      WHERE CODE = #{code}
+      WHERE LECTURE_CODE=#{param1} AND LANGUAGE_CODE = #{param2};
    
    </delete>
 </mapper>

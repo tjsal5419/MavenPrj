@@ -12,4 +12,5 @@ public interface LanguageDao {
 	int delete(String language);
 	List<Language> getList(int page, String field, String query);
 	List<Language> getList(int page);
+	List<Language> getLanguagesOfLecture(String lectureCode);
 }
